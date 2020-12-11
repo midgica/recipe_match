@@ -1,0 +1,10 @@
+Refried Beans
+beans	butter	cilantro	cayenne	salt	cheese
+3	1/4	1	1/8	1/4	1
+cup	cup	tsp	tsp	tsp	cup
+9
+2 minutes
+10 minutes
+0
+beans
+Heat butter and seasoning in pan while mashing well-cooked beans. Fry the beans over medium-high heat and continue to mash until smooth and heated through. Top with cheese and serve.

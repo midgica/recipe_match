@@ -1,0 +1,10 @@
+Chili
+ground beef	beans	ketchup	red pepper	corn	paprika	cayenne
+2	3	1/3	1	2	1	1
+lb	cup	cup	cup	cup	tbsp	tsp
+8
+5 minutes
+30 minutes
+0
+beef
+Brown beef in a large kettle. Meanwhile, finely chop red pepper. Add ketchup and spices to the beef, then stir in cooked beans and vegetables. Simmer for at least 30 minutes, but as long as you like. 

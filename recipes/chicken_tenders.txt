@@ -1,0 +1,10 @@
+Chicken Tenders
+chicken	flour	cornmeal	egg	salt	paprika
+2	2	1/2	1	1/2	1/4
+lb	cup	cup		tsp	tsp
+5
+15 minutes
+15 minutes
+0
+chicken
+Cut chicken into strips. Whisk together the flour, cornmeal, salt, and paprika. Beat the egg with a tablespoon of water. `Dip the chicken pieces into the egg, then into the flour mixture. Set them aside on a pan and let them rest for 5 minutes. Bake at 400F or until browned.

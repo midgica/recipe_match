@@ -1,0 +1,10 @@
+Bean Salad
+beans	vinegar	oil	cucumber	tarragon	cilantro	cayenne
+1	1/4	1/4	2	1	1	1/4
+lb	cup	cup	cup	tsp	tsp	tsp
+5
+5 minutes
+0 minutes
+0
+beans
+Whisk together oil and vinegar. Chop cucumber into small pieces and toss into the dressing with vinegar and seasoning. Stir in cooked beans.

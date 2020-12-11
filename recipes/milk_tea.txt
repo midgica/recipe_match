@@ -1,0 +1,10 @@
+Milk Tea
+milk	sugar	tea
+2	2	1
+cup	tbsp	bag
+7
+2 minutes
+3 minutes
+0
+tea
+Make tea with milk.

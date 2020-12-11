@@ -1,0 +1,10 @@
+Chicken Teriyaki
+chicken	teriyaki sauce	rice
+2	1	4
+cup	cup	cup
+9
+5 minutes
+15 minutes
+0
+chicken
+Prepare the rice. Meanwhile, chop chicken into large pieces and brown quickly in a hot pan. Cook over medium heat and add sauce when the chicken is done. `Serve sauced chicken over rice.

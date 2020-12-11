@@ -1,0 +1,19 @@
+find recipes
+	browse cookbook (category, rating, search by name)
+		view recipe
+			convert
+		add to menu
+	ingredient matcher
+		choose ingredients
+			view recipe
+				convert
+			add to menu
+	random recipe
+		view recipe
+			convert
+		add to menu
+
+my menu
+	remove recipe
+	make shopping list
+		kitchen inventory

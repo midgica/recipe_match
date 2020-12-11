@@ -1,0 +1,59 @@
+class Recipe(object):
+	__init__(self, filename)
+	__str__(self)
+	display(self)
+	edit(self, filename)
+	add(self, filename)
+	delete(self, filename)
+	print(self, filename)
+
+class Menu(object):
+	__init__(self, meal_list=[])
+	__str__(self)
+	wipe(self)
+	create_cookbook(self)
+	display(self)
+	match_recipes(self, user, ing_or_rec=ing)
+		screen(self)
+		add_ing_to_ITM(self, user)
+		num_of_ings_to_match(self, user)
+	select_recipes(self)
+	add_recipes(self, new_recipe)
+	sort_alpha(self)
+	sort_matches(self)
+	sort_main_ing(self)
+	load_menu(self)
+	save_menu(self)
+	print(self)
+
+class Shopping_List(object):
+	__init__(self, user)
+	__str__(self)
+	display(self, user)
+	save(self)
+	print(self)
+	sort(self)
+
+class User(object):
+	__init__(self, shopping_list=[], menu=None, ingredients_to_match=[], on_hand_staples=[], missing_staples=[], required_matches=3)
+	__str__(self)
+	load(self)
+	save(self)
+	inventory(self, STAPLES)
+
+class Screen(object):
+	main_menu(self)
+	create_menu(self)
+	shopping_list(self)
+	inventory(self)
+	browse_recipes(self)
+		button_command()
+		see_recipe(recipe)
+
+main()
+
+STAPLES
+cookbook
+
+
+

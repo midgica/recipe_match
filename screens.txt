@@ -1,0 +1,52 @@
+main menu
+	match
+	browse
+	inventory
+	view menu
+	user load save
+	quit
+
+load/save user
+
+inventory
+	match
+	shopping list
+	main menu
+
+view menu
+	shopping list
+	display recipe
+	browse
+	match
+	menu load save
+	main menu
+
+load/save menu
+
+match settings
+	browse
+	enter ingredients
+	select matches
+	main menu
+
+enter ingredients
+	
+select matches
+	view menu
+	browse
+	inventory
+	display recipe
+	match
+
+shopping list
+	inventory
+	view menu
+
+display recipe - keep this one opening in new window
+	"go back"
+
+browse
+	display recipe
+	view menu
+	match
+	main menu
