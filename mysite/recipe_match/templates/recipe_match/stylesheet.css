@@ -1,0 +1,22 @@
+body {
+	font-family: verdana;
+	background-color: beige;
+}
+nav { 
+	float:left;
+	width: 30%;
+}
+ul {
+	list-style-type: none;
+}
+header li {
+	font-size: 26px;
+	float: left;
+	padding: 26px;
+}
+li a {
+	text-decoration: none;
+	color: black;
+@media (max-width: 600px) {
+	nav, article {width: 100%;}
+}

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-<title>HTML/CSS Practice</title>
+<title>Browse Cookbook</title>
 <meta charset="UTF-8">
 <meta name="keywords" content="recipes, cookbook, meal planning">
 <meta name="description" content="Online Cookbook and Meal Planner">
 <meta name="author" content="Monica Mashock">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="practice stylesheet.css">
+<link rel="stylesheet" href="stylesheet.css">
 <style></style>
 </head>
 
@@ -23,18 +23,23 @@
 </header>
 
 <nav>
-<details>
-<summary>List of Recipes</summary>
-<ul>
-	<li><a href="#R1">Recipe 1</li>
-	<li><a href="#R2">Recipe 2</li>
-	<li><a href="#R3">Recipe 3</li>
-</ul>
-</details>
+{% if recipe_list %}
+    <details>
+    <summary>List of Recipes</summary>
+
+    <ul>
+    {% for recipe in recipe_list %}
+	<li><a href="/recipe_match/{{ recipe.id }}/" target="#recipe_view">{{ recipe.name }}</a></li>
+    {% endfor %}
+    </ul>
+    </details>
+{% else %}
+    <p>No recipes are available.</p>
+{% endif %}
 </nav>
 
 <article style="float:left;">
-<iframe src="sample_recipe.htm" height="800" width="500" style="border:2px solid gray" title="Sample Recipe">
+<iframe id="recipe_view" src="recipe.html" height="800" width="500" style="border:2px solid gray" title="Sample Recipe">
 </iframe>
 </article>
 
