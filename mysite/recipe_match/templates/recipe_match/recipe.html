@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Sample Recipe</title>
+<title>{{ recipe.name }}</title>
 <style>
 ul {
 	list-style-type: disc;
@@ -13,8 +13,65 @@ ul li {
 </head>
 <body style="background-color:beige;">
 
-<p>This page shows a specific recipe.</p>
-<br>
+<h3>{{ recipe.name }}</h3>
+<hr><br>
+
+<!-- for ingredient in recipe, print amt unit ingred notes -->
+
+
+
+<ul>
+{% if recipe.ingred1 %}
+	{{ recipe.amt1 }} {{ recipe.unit1 }} {{ recipe.ingred1 }}
+{% endif %}
+{% if recipe.notes1 %}
+	({{ recipe.notes1 }})
+{% endif %}
+{% if recipe.ingred1 %}
+	<br>
+{% endif %}
+{% if recipe.ingred2 %}
+	{{ recipe.amt2 }} {{ recipe.unit2 }} {{ recipe.ingred2 }}
+{% endif %}
+{% if recipe.notes2 %}
+	({{ recipe.notes2 }})
+{% endif %}
+{% if recipe.ingred2 %}
+	<br>
+{% endif %}
+{% if recipe.ingred3 %}
+	{{ recipe.amt3 }} {{ recipe.unit3 }} {{ recipe.ingred3 }}
+{% endif %}
+{% if recipe.notes3 %}
+	({{ recipe.notes3 }})
+{% endif %}
+{% if recipe.ingred3 %}
+	<br>
+{% endif %}
+{% if recipe.ingred4 %}
+	{{ recipe.amt4 }} {{ recipe.unit4 }} {{ recipe.ingred4 }}
+{% endif %}
+{% if recipe.notes4 %}
+	({{ recipe.notes4 }})
+{% endif %}
+{% if recipe.ingred4 %}
+	<br>
+{% endif %}
+{% if recipe.ingred5 %}
+	{{ recipe.amt5 }} {{ recipe.unit5 }} {{ recipe.ingred5 }}
+{% endif %}
+{% if recipe.notes5 %}
+	({{ recipe.notes5 }})<br>
+{% endif %}
+{% if recipe.ingred5 %}
+	<br>
+{% endif %}
+</ul>
+
+
+
+
+
 
 <h3>Moo Shu Pork Tacos</h3>
 <hr>

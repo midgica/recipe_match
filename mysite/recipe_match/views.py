@@ -1,48 +1,40 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.template import loader
 from .models import Recipe
 
 # Create your views here.
 
 
 def index(request):
-    template = loader.get_template('recipe_match/index.html')
     context = {}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'recipe_match/index.html', context)
 
 def browse(request):
-    template = loader.get_template('recipe_match/browse.html')
     recipe_list = Recipe.objects.order_by()
     context = {'recipe_list': recipe_list}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'recipe_match/browse.html', context)
 
 def match(request):
-    template = loader.get_template('recipe_match/match.html')
     context = {}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'recipe_match/match.html', context)
 
 def random(request):
-    template = loader.get_template('recipe_match/random.html')
     context = {}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'recipe_match/random.html', context)
 
 def menu(request):
-    template = loader.get_template('recipe_match/menu.html')
     context = {}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'recipe_match/menu.html', context)
 
 def shopping_list(request):
-    template = loader.get_template('recipe_match/shopping_list.html')
     context = {}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'recipe_match/shopping_list.html', context)
 
 def inventory(request):
-    template = loader.get_template('recipe_match/inventory.html')
     context = {}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'recipe_match/inventory.html', context)
 
-def recipe(request):
-    template = loader.get_template('recipe_match/recipe.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
+def recipe(request, recipe_id):
+    recipe = Recipe.objects.get(pk=recipe_id)
+    context = {'recipe': recipe}
+    return render(request, 'recipe_match/recipe.html', context)

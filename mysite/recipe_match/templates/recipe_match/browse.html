@@ -14,10 +14,10 @@
 <body>
 <header>
 <ul>
-	<li><a href="#Browse" style="color:red;">Browse Cookbook</a></li>
-	<li><a href="#Match" style="color:orange;">Ingredient Matcher</a></li>
-	<li><a href="#Random" style="color:green;">Random Recipe</a></li>
-	<li><a href="#Menu" style="color:blue;">My Menu</a></li>
+	<li><a href="{% url 'browse' %}" style="color:red;">Browse Cookbook</a></li>
+	<li><a href="{% url 'match' %}" style="color:orange;">Ingredient Matcher</a></li>
+	<li><a href="{% url 'random' %}" style="color:green;">Random Recipe</a></li>
+	<li><a href="{% url 'menu' %}" style="color:blue;">My Menu</a></li>
 </ul>
 <br><br><br><br><br><hr>
 </header>
@@ -29,7 +29,7 @@
 
     <ul>
     {% for recipe in recipe_list %}
-	<li><a href="/recipe_match/{{ recipe.id }}/" target="#recipe_view">{{ recipe.name }}</a></li>
+	<li><a href="{% url 'recipe' recipe.id %}">{{ recipe.name }}</a></li>
     {% endfor %}
     </ul>
     </details>
@@ -39,7 +39,7 @@
 </nav>
 
 <article style="float:left;">
-<iframe id="recipe_view" src="recipe.html" height="800" width="500" style="border:2px solid gray" title="Sample Recipe">
+<iframe src="recipe.html" height="800" width="500" style="border:2px solid gray" title="Sample Recipe">
 </iframe>
 </article>
 
