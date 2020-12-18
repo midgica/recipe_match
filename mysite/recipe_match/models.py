@@ -7,6 +7,8 @@ class Recipe(models.Model):
     name = models.CharField(max_length=200)
     category = models.CharField(max_length=50, default='dinner')
     tags = models.CharField(max_length=200, blank=True)
+    servings = models.PositiveSmallIntegerField(default=4,
+                                                validators=[MinValueValidator(1)])
     rating = models.PositiveSmallIntegerField(default=5,
                                               validators=[MaxValueValidator(10),
                                                           MinValueValidator(0)])
