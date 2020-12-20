@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Recipe
-from recipe_match.functions import ingred_list
 
 # Create your views here.
 
@@ -37,7 +36,9 @@ def inventory(request):
 
 def recipe(request, recipe_id):
     recipe = Recipe.objects.get(pk=recipe_id)
-    ingredient_list = ingred_list(recipe)
+    ingredient_list = recipe.ingredient_list.all()
+    instructions = recipe.instructions.split('`')
     context = {'recipe': recipe,
-               'ingredient_list': ingredient_list}
+               'ingredient_list': ingredient_list,
+               'instructions': instructions}
     return render(request, 'recipe_match/recipe.html', context)
