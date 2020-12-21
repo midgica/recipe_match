@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Recipe
+from .convert_servings import convert_servings
 
 # Create your views here.
 
@@ -42,3 +43,12 @@ def recipe(request, recipe_id):
                'ingredient_list': ingredient_list,
                'instructions': instructions}
     return render(request, 'recipe_match/recipe.html', context)
+
+def recipe_servings(request, recipe_id, desired_servings):
+    recipe = Recipe.objects.get(pk=recipe_id)
+    ingredient_list = convert_servings(recipe, desired_servings)
+    instructions = recipe.instructions.split('`')
+    context = {'recipe': recipe,
+               'ingredient_list': ingredient_list,
+               'instructions': instructions}
+    return render(request, 'recipe_match/recipe_servings.html', context)

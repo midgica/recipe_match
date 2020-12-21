@@ -1,7 +1,7 @@
 from django.db import models
 from .food import Food
 from .unit import Unit
-import fractions
+from recipe_match.convert_fractions import convert_fractions
 
 
 class Ingredient(models.Model):
@@ -14,19 +14,21 @@ class Ingredient(models.Model):
     
     def __str__(self):
 
-        if int(self.amount) == self.amount:
-            self.amt_str = int(self.amount)
-        else: ##convert to fraction
-            if self.amount < 1:
-                frac = fractions.Fraction(self.amount).limit_denominator(12)
-                #print somehow
-                self.amt_str = str(frac)
-            else:  ## if not < 1 then a mixed fraction is needed
-                whole = int(self.amount)
-                portion = self.amount - whole
-                frac = fractions.Fraction(portion).limit_denominator(12)
-                ## display whole next to converted frac
-                self.amt_str = (str(whole) + " " + str(frac))
+        self.amt_str = convert_fractions(self.amount)
+
+##        if int(self.amount) == self.amount:
+##            self.amt_str = int(self.amount)
+##        else: ##convert to fraction
+##            if self.amount < 1:
+##                frac = fractions.Fraction(self.amount).limit_denominator(12)
+##                #print somehow
+##                self.amt_str = str(frac)
+##            else:  ## if not < 1 then a mixed fraction is needed
+##                whole = int(self.amount)
+##                portion = self.amount - whole
+##                frac = fractions.Fraction(portion).limit_denominator(12)
+##                ## display whole next to converted frac
+##                self.amt_str = (str(whole) + " " + str(frac))
         
         
         if not self.unit:

@@ -1,5 +1,20 @@
 import fractions
 
-def convert_fractions(dec_amount):
+def convert_fractions(amount):
 
-    if 
+    if int(amount) == amount: #already an integer
+        amt_str = int(amount)
+        return amt_str
+
+    else:
+        if amount < 1: #a fraction less than 1
+            frac = fractions.Fraction(amount).limit_denominator(12)
+            amt_str = str(frac)
+            return amt_str
+        
+        else: #a fraction over 1, i.e. a mixed number
+            whole = int(amount)
+            portion = amount - whole
+            frac = fractions.Fraction(portion).limit_denominator(12)
+            amt_str = (str(whole) + " " + str(frac))
+            return amt_str

@@ -1,15 +1,28 @@
-#get how many servings the recipe is currently for
+from .convert_units import convert_units
+from .models import Ingredient
 
-#get how many servings the user wants it to be
+def convert_servings(recipe, desired_servings):
 
-#divide one by the other
+    #get how many servings the recipe is currently for
+    current_servings = recipe.servings
 
-#for each ingredient.amount
-    #multiply by that
+    #get how many servings the user wants it to be
+    #divide one by the other
+    coefficient = (desired_servings / current_servings)
 
+    #for every ingredient, create a new ingredient with multiplied amount
+    ingredient_list = recipe.ingredient_list.all()
+    new_ingredient_list = []
+    for ing in ingredient_list:
+        amount = (float(ing.amount) * float(coefficient))
+        new_ingredient = Ingredient(food = ing.food,
+                                    amount = amount,
+                                    unit = ing.unit,
+                                    notes = ing.notes)
+        converted_ingredient = convert_units(new_ingredient)
+        
+        new_ingredient_list.append(converted_ingredient)
 
-#okay but how do i display the amounts without creating completely new
-#ingredients to nest them in
+    return new_ingredient_list
+    #print this instead of recipe.ingredient_list
 
-
-#display but don't save
