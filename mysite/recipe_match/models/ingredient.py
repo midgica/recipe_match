@@ -1,11 +1,15 @@
 from django.db import models
+from .food import Food
+from .unit import Unit
 import fractions
 
 
 class Ingredient(models.Model):
-    name = models.CharField(max_length=100)
-    amount = models.DecimalField(max_digits=6, decimal_places=4)
-    unit = models.CharField(max_length=20, blank=True)
+    ##name = models.CharField(max_length=100)
+    food = models.ForeignKey(Food, on_delete=models.CASCADE, blank=True, null=True)
+    amount = models.DecimalField(max_digits=7, decimal_places=4)
+    ##unit = models.CharField(max_length=20, blank=True)
+    unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=True, null=True)
     notes = models.CharField(max_length=100, blank=True)
     
     def __str__(self):
@@ -27,12 +31,24 @@ class Ingredient(models.Model):
         
         if not self.unit:
             if self.notes:
-                return "%s %s, %s" % (self.amt_str, self.name, self.notes)
+                if self.amount > 1:
+                    return "%s %s, %s" % (self.amt_str, self.food.plural, self.notes)
+                else:
+                    return "%s %s, %s" % (self.amt_str, self.food, self.notes)
             else:
-                return "%s %s" % (self.amt_str, self.name)
+                if self.amount > 1:
+                    return "%s %s" % (self.amt_str, self.food.plural)
+                else:
+                    return "%s %s" % (self.amt_str, self.food)
         else:
             if self.notes:
-                return "%s %s %s, %s" % (self.amt_str, self.unit, self.name, self.notes)
+                if self.amount > 1:
+                    return "%s %s %s, %s" % (self.amt_str, self.unit, self.food.plural, self.notes)
+                else:          
+                    return "%s %s %s, %s" % (self.amt_str, self.unit, self.food, self.notes)
             else:
-                return "%s %s %s" % (self.amt_str, self.unit, self.name)
+                if self.amount > 1:
+                    return "%s %s %s" % (self.amt_str, self.unit, self.food.plural)
+                else:
+                    return "%s %s %s" % (self.amt_str, self.unit, self.food)
      
