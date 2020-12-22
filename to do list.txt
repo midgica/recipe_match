@@ -22,6 +22,7 @@ features:
 	allow user to save a menu, shopping list, etc
 	browse cookbook by category, not just alphabetical
 	convert recipe to international measures
+	calendar to schedule meals
 
 bugs: 
 	when it says recipe object, make sure to return recipe.name instead of recipe (view menu, recipe match)

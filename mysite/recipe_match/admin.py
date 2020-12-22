@@ -23,6 +23,7 @@ class IngredientResource(resources.ModelResource):
         model = Ingredient
 class IngredientAdmin(ImportExportModelAdmin):
     resource_class = IngredientResource
+    fields = ['amount', 'unit', 'food', 'notes']
 
 class CategoryResource(resources.ModelResource):
     class Meta:
