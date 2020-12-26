@@ -10,9 +10,10 @@ def index(request):
     context = {}
     return render(request, 'recipe_match/index.html', context)
 
-def browse(request):
+def browse(request, recipe_id = 0):
     recipe_list = Recipe.objects.order_by()
-    context = {'recipe_list': recipe_list}
+    context = {'recipe_list': recipe_list,
+               'recipe_id' : recipe_id}
     return render(request, 'recipe_match/browse.html', context)
 
 def match(request):
@@ -51,4 +52,4 @@ def recipe_servings(request, recipe_id, desired_servings):
     context = {'recipe': recipe,
                'ingredient_list': ingredient_list,
                'instructions': instructions}
-    return render(request, 'recipe_match/recipe_servings.html', context)
+    return render(request, 'recipe_match/recipe.html', context)

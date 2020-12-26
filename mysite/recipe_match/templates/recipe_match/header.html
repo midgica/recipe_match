@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-<title>Random Recipe</title>
 <meta charset="UTF-8">
 <meta name="keywords" content="recipes, cookbook, meal planning">
 <meta name="description" content="Online Cookbook and Meal Planner">
@@ -17,21 +16,19 @@
 <ul>
 	<li><a href="{% url 'browse' %}" style="color:red;">Browse Cookbook</a></li>
 	<li><a href="{% url 'match' %}" style="color:orange;">Ingredient Matcher</a></li>
-	<li><a href="{% url 'random' %}" style="color:green;">Random Recipe</a></li>
-	<li><a href="{% url 'menu' %}" style="color:blue;">My Menu</a></li>
+	<li><a href="{% url 'menu' %}" style="color:green;">My Menu</a></li>
+	<li><a href="{% url 'shopping_list' %}" style="color:blue;">Shopping List</a></li>
 </ul>
 <br><br><br><br><br><hr>
 </header>
 
-<p>This page shows a random recipe.</p>
 
-<nav>
-</nav>
 
-<article style="float:left;">
-</article>
+{% block content %}
+{% endblock %}
 
-<footer></footer>
+
+{% include 'recipe_match/footer.html' %}
 
 </body>
 </html>

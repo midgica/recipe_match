@@ -1,27 +1,6 @@
-<!DOCTYPE html>
-<html lang="en-us">
-<head>
-<title>Index</title>
-<meta charset="UTF-8">
-<meta name="keywords" content="recipes, cookbook, meal planning">
-<meta name="description" content="Online Cookbook and Meal Planner">
-<meta name="author" content="Monica Mashock">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'recipe_match/style.css' %}">
-<style></style>
-</head>
+{% extends 'recipe_match/header.html' %}
 
-<body>
-<header>
-<ul>
-	<li><a href="{% url 'browse' %}" style="color:red;">Browse Cookbook</a></li>
-	<li><a href="{% url 'match' %}" style="color:orange;">Ingredient Matcher</a></li>
-	<li><a href="{% url 'random' %}" style="color:green;">Random Recipe</a></li>
-	<li><a href="{% url 'menu' %}" style="color:blue;">My Menu</a></li>
-</ul>
-<br><br><br><br><br><hr>
-</header>
+{% block content %}
 
 <p>This is the index page.</p>
 
@@ -31,7 +10,4 @@
 <article style="float:left;">
 </article>
 
-<footer></footer>
-
-</body>
-</html>
+{% endblock %}
