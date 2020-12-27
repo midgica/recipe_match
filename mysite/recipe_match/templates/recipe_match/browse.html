@@ -15,7 +15,7 @@
 
     <ul>
     {% for recipe in recipe_list %}
-	<li><a href="{% url 'recipe' recipe.id %}">{{ recipe.name }}</a></li>
+	<li><a href="{% url 'browse' recipe.id recipe.servings %}">{{ recipe.name }}</a></li>
     {% endfor %}
     </ul>
     </details>
@@ -50,12 +50,12 @@
 
 	<p>How many servings?</p>
 	<ul style="float:left;">
-		<li><a href="{% url 'servings' recipe.id 1 %}">1</a></li>
-		<li><a href="{% url 'servings' recipe.id 2 %}">2</a></li>
-		<li><a href="{% url 'servings' recipe.id 4 %}">4</a></li>
-		<li><a href="{% url 'servings' recipe.id 6 %}">6</a></li>
-		<li><a href="{% url 'servings' recipe.id 8 %}">8</a></li>
-		<li><a href="{% url 'servings' recipe.id 12 %}">12</a></li>
+		<li><a href="{% url 'recipe' recipe.id 1 %}">1</a></li>
+		<li><a href="{% url 'recipe' recipe.id 2 %}">2</a></li>
+		<li><a href="{% url 'recipe' recipe.id 4 %}">4</a></li>
+		<li><a href="{% url 'recipe' recipe.id 6 %}">6</a></li>
+		<li><a href="{% url 'recipe' recipe.id 8 %}">8</a></li>
+		<li><a href="{% url 'recipe' recipe.id 12 %}">12</a></li>
 	</ul>
 {% endif %}
 

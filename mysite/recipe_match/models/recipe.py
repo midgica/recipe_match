@@ -15,6 +15,7 @@ class Recipe(models.Model):
                                                           MinValueValidator(0)])
     ingredient_list = models.ManyToManyField(Ingredient)
     instructions = models.TextField(max_length=5000)
+    source = models.CharField(max_length=1000, blank=True)
     
     def __str__(self):
         return self.name
