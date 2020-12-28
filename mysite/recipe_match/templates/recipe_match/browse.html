@@ -9,20 +9,70 @@
 
 <!-- Random Button --> 
 
-{% if recipe_list %}
-    <details open>
-    <summary>List of Recipes</summary>
 
-    <ul>
-    {% for recipe in recipe_list %}
-	<li><a href="{% url 'browse' recipe.id recipe.servings %}">{{ recipe.name }}</a></li>
-    {% endfor %}
-    </ul>
-    </details>
-{% else %}
-    <p>No recipes are available.</p>
+{% if breakfast %}
+	<details>
+	<summary>Breakfast</summary>
+	<ul>
+	{% for recipe in breakfast %}
+		<li><a href="{% url 'browse' recipe.id recipe.servings %}">{{ recipe.name }}</a></li>
+	{% endfor %}
+	</ul>
+	</details>
 {% endif %}
+
+
+{% if snack %}
+	<details>
+	<summary>Snack</summary>
+	<ul>
+	{% for recipe in snack %}
+		<li><a href="{% url 'browse' recipe.id recipe.servings %}">{{ recipe.name }}</a></li>
+	{% endfor %}
+	</ul>
+	</details>
+{% endif %}
+
+
+{% if dinner %}
+	<details>
+	<summary>Dinner</summary>
+	<ul>
+	{% for recipe in dinner %}
+		<li><a href="{% url 'browse' recipe.id recipe.servings %}">{{ recipe.name }}</a></li>
+	{% endfor %}
+	</ul>
+	</details>
+{% endif %}
+
+
+{% if dessert %}
+	<details>
+	<summary>Dessert</summary>
+	<ul>
+	{% for recipe in dessert %}
+		<li><a href="{% url 'browse' recipe.id recipe.servings %}">{{ recipe.name }}</a></li>
+	{% endfor %}
+	</ul>
+	</details>
+{% endif %}
+
+
+{% if beverage %}
+	<details>
+	<summary>Beverage</summary>
+	<ul>
+	{% for recipe in beverage %}
+		<li><a href="{% url 'browse' recipe.id recipe.servings %}">{{ recipe.name }}</a></li>
+	{% endfor %}
+	</ul>
+	</details>
+{% endif %}
+
+
 </nav>
+
+
 
 <article style="float:left; border:2px solid gray; padding: 10px">
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Recipe
+from .models import Recipe, Category
 from .convert_servings import convert_servings
 
 # Create your views here.
@@ -11,7 +11,12 @@ def index(request):
     return render(request, 'recipe_match/index.html', context)
 
 def browse(request, recipe_id = 0, desired_servings = 0):
-    recipe_list = Recipe.objects.order_by()
+    recipe_list = Recipe.objects.order_by('name')
+    breakfast = Recipe.objects.filter(category='2')
+    snack = Recipe.objects.filter(category='5')
+    dinner = Recipe.objects.filter(category='3')
+    dessert = Recipe.objects.filter(category='4')
+    beverage = Recipe.objects.filter(category='1')
     if recipe_id != 0:
         recipe = get_object_or_404(Recipe, pk=recipe_id)
         ingredient_list = convert_servings(recipe, desired_servings)
@@ -21,6 +26,12 @@ def browse(request, recipe_id = 0, desired_servings = 0):
         ingredient_list = []
         instructions = ""
     context = {'recipe_list': recipe_list,
+               'breakfast': breakfast,
+               'snack': snack,
+               'dinner': dinner,
+               'dessert': dessert,
+               'beverage': beverage,
+               'recipe_id': recipe_id,
                'recipe': recipe,
                'ingredient_list': ingredient_list,
                'instructions': instructions}
