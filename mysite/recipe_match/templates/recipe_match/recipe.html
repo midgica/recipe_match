@@ -7,26 +7,13 @@
 <meta name="description" content="Online Cookbook and Meal Planner">
 <meta name="author" content="Monica Mashock">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'recipe_match/style.css' %}">
-<style>
-body { 
-	background-color: beige; 
-}
-ul {
-	list-style-type: circle;
-}
-ul li {
-	font-size: 14px;
-}
-</style>
 </head>
 <body>
 
 <h3>{{ recipe.name }}</h3>
 <hr>
 
-<ul>
+<ul style="list-style-type: circle; font-size: 14px;">
 {% for ing in ingredient_list %}
 	<li>{{ ing }}</li>
 {% endfor %}
@@ -42,20 +29,22 @@ ul li {
 
 <hr>
 
-<p>How many servings?</p>
-<ul style="float:left;">
-	<li><a href="{% url 'recipe' recipe.id 1 %}">1</a></li>
-	<li><a href="{% url 'recipe' recipe.id 2 %}">2</a></li>
-	<li><a href="{% url 'recipe' recipe.id 4 %}">4</a></li>
-	<li><a href="{% url 'recipe' recipe.id 6 %}">6</a></li>
-	<li><a href="{% url 'recipe' recipe.id 8 %}">8</a></li>
-	<li><a href="{% url 'recipe' recipe.id 12 %}">12</a></li>
-</ul>
+{% if recipe.id %}
+	<div style="font-size:14px;">How many servings?</div>
+	<ul style="list-style-type:circle; font-size:14px; float:left;">
+		<li><a href="{% url 'recipe' recipe.id 1 %}">1</a></li>
+		<li><a href="{% url 'recipe' recipe.id 2 %}">2</a></li>
+		<li><a href="{% url 'recipe' recipe.id 4 %}">4</a></li>
+		<li><a href="{% url 'recipe' recipe.id 6 %}">6</a></li>
+		<li><a href="{% url 'recipe' recipe.id 8 %}">8</a></li>
+		<li><a href="{% url 'recipe' recipe.id 12 %}">12</a></li>
+	</ul>
+{% endif %}
 
 <br><br><br><br><br><br><br><br>
 
 {% if recipe.source %}
-<p style="font-size:12px;">Source: {{ recipe.source }}</p>
+<p style="font-size:12px;">{{ recipe.source }}</p>
 {% endif %}
 
 </body>

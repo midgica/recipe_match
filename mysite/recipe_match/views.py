@@ -17,10 +17,11 @@ def browse(request, recipe_id = 0, desired_servings = 0):
         ingredient_list = convert_servings(recipe, desired_servings)
         instructions = recipe.instructions.split('`')
     else:
+        recipe = None
         ingredient_list = []
         instructions = ""
     context = {'recipe_list': recipe_list,
-               'recipe_id' : recipe_id,
+               'recipe': recipe,
                'ingredient_list': ingredient_list,
                'instructions': instructions}
     return render(request, 'recipe_match/browse.html', context)

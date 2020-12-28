@@ -1,35 +1,29 @@
+sort browse page by category
+add random button to browse page (by category)
+user login to select and save menu, shopping list, inventory
+ability to select a recipe
+ability to make a shopping list
+ingredient matcher
+ability to take kitchen inventory
 
 
 
 
 
 
+refactoring:
 
-
-
-refactoring: 
-	find out how ingredient amounts are currently being converted (line 322-340ish)
-	use the for loop to put ingredient stuff directly in ingred_dict (line 295)
-	add library for measurement conversion
-	do i need an __init__.py?
 
 features:
 	allow user to convert how many servings they want
-	forms to "upload" recipes
-	database to store recipes
-	html interface and persistent selection memory (google "html templates python")
+	user login to save menu, list, etc
 	list of recipes when grocery list is displayed
-	allow user to save a menu, shopping list, etc
 	browse cookbook by category, not just alphabetical
 	convert recipe to international measures
 	calendar to schedule meals
 
 bugs: 
-	when it says recipe object, make sure to return recipe.name instead of recipe (view menu, recipe match)
-	inventory only allows one checkmark to change at once and i can't mark that i ran out of something
-	shopping list isn't filtering out staples on hand
-	can't X a recipe off the menu 
-	ingredients to match with don't clear if you try to match again
+
 
 
 

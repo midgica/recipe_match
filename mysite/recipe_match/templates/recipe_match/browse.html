@@ -10,7 +10,7 @@
 <!-- Random Button --> 
 
 {% if recipe_list %}
-    <details>
+    <details open>
     <summary>List of Recipes</summary>
 
     <ul>
@@ -24,61 +24,15 @@
 {% endif %}
 </nav>
 
-<article style="float:left;">
+<article style="float:left; border:2px solid gray; padding: 10px">
 
 {% if recipe_id == 0 %}
-	Waiting for recipe_id
+	<p>Select a recipe.</p>
 {% else %}
-	<h3>{{ recipe.name }}</h3>
-	<hr>
-
-	<ul>
-	{% for ing in ingredient_list %}
-		<li>{{ ing }}</li>
-	{% endfor %}
-	</ul>	
-
-	<hr>
-
-	<ol>
-	{% for step in instructions %}
-		<li>{{ step }}</li>
-	{% endfor %}
-	</ol>
-
-	<hr>
-
-	<p>How many servings?</p>
-	<ul style="float:left;">
-		<li><a href="{% url 'recipe' recipe.id 1 %}">1</a></li>
-		<li><a href="{% url 'recipe' recipe.id 2 %}">2</a></li>
-		<li><a href="{% url 'recipe' recipe.id 4 %}">4</a></li>
-		<li><a href="{% url 'recipe' recipe.id 6 %}">6</a></li>
-		<li><a href="{% url 'recipe' recipe.id 8 %}">8</a></li>
-		<li><a href="{% url 'recipe' recipe.id 12 %}">12</a></li>
-	</ul>
+	{% include 'recipe_match/recipe.html' %}
 {% endif %}
 
 
-<!--
-<link rel="import" href="sample_recipe.html">
--->
-
-<!--
-<embed type="text/html" src="sample_recipe.html" height="800" width="500"
-style="border:2 px solid gray">
--->
-
-<!--
-<object data="sample_recipe.html" height="800" width="500" style="border:2px solid gray" type="text/html">
-Recipe Card
-</object>
--->
-
-<!--
-<iframe src="recipe.html" height="800" width="500" style="border:2px solid gray" title="Sample Recipe">
-</iframe>
--->
 
 </article>
 
