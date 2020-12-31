@@ -29,19 +29,20 @@
 
 <hr>
 
-{% if recipe.id %}
-	<div style="font-size:14px;">How many servings?</div>
-	<ul style="list-style-type:circle; font-size:14px; float:left;">
-		<li><a href="{% url 'recipe' recipe.id 1 %}">1</a></li>
-		<li><a href="{% url 'recipe' recipe.id 2 %}">2</a></li>
-		<li><a href="{% url 'recipe' recipe.id 4 %}">4</a></li>
-		<li><a href="{% url 'recipe' recipe.id 6 %}">6</a></li>
-		<li><a href="{% url 'recipe' recipe.id 8 %}">8</a></li>
-		<li><a href="{% url 'recipe' recipe.id 12 %}">12</a></li>
-	</ul>
-{% endif %}
 
-<br><br><br><br><br><br><br><br>
+<div style="font-size:14px;">How many servings? Currently serves {{ desired_servings }}.</div>
+	<ul style="list-style-type:none; font-size:14px;">
+		<li style="float:left; padding:15px;"><a href="{% url 'browse' recipe.id 1 %}">1</a></li>
+		<li style="float:left; padding:15px;"><a href="{% url 'browse' recipe.id 2 %}">2</a></li>
+		<li style="float:left; padding:15px;"><a href="{% url 'browse' recipe.id 4 %}">4</a></li>
+		<li style="float:left; padding:15px;"><a href="{% url 'browse' recipe.id 6 %}">6</a></li>
+		<li style="float:left; padding:15px;"><a href="{% url 'browse' recipe.id 8 %}">8</a></li>
+		<li style="float:left; padding:15px;"><a href="{% url 'browse' recipe.id 12 %}">12</a></li>
+	</ul>
+<br><br><br><hr>
+
+<h4 style="padding:5px"><a>Add to my menu</a></h4>
+<br><br>
 
 {% if recipe.source %}
 <p style="font-size:12px;">{{ recipe.source }}</p>

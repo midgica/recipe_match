@@ -5,10 +5,25 @@
 
 
 
-<nav>
+<nav style="width:20%;">
 
 <!-- Random Button --> 
+<ul>
+{% if rand_breakfast_recipe %}
+	<li><a href="{% url 'browse' rand_breakfast_recipe.id rand_breakfast_recipe.servings %}">Random Breakfast</a></li>
+{% endif %}
+{% if rand_snack_recipe %}
+	<li><a href="{% url 'browse' rand_snack_recipe.id rand_snack_recipe.servings %}">Random Snack</a></li>
+{% endif %}
+	<li><a href="{% url 'browse' rand_dinner_recipe.id rand_dinner_recipe.servings %}">Random Dinner</a></li>
+{% if rand_dessert_recipe %}
+	<li><a href="{% url 'browse' rand_dessert_recipe.id rand_dessert_recipe.servings %}">Random Dessert</a></li>
+{% endif %}
+	<li><a href="{% url 'browse' rand_beverage_recipe.id rand_beverage_recipe.servings %}">Random Beverage</a></li>
+</ul>
 
+<br>
+<h3>Browse</h3>
 
 {% if breakfast %}
 	<details>
@@ -74,7 +89,7 @@
 
 
 
-<article style="float:left; border:2px solid gray; padding: 10px">
+<article style="float:left; border:2px solid gray; padding:10px; width:60%;">
 
 {% if recipe_id == 0 %}
 	<p>Select a recipe.</p>
@@ -82,9 +97,9 @@
 	{% include 'recipe_match/recipe.html' %}
 {% endif %}
 
-
-
 </article>
+
+
 
 
 {% endblock %}

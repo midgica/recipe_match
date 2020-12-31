@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Recipe, Category
 from .convert_servings import convert_servings
+import random as rand
 
 # Create your views here.
 
@@ -17,6 +18,16 @@ def browse(request, recipe_id = 0, desired_servings = 0):
     dinner = Recipe.objects.filter(category='3')
     dessert = Recipe.objects.filter(category='4')
     beverage = Recipe.objects.filter(category='1')
+    #rand_breakfast = rand.randrange(len(breakfast))
+    #rand_breakfast_recipe = breakfast[rand_breakfast]
+    #rand_snack = rand.randrange(len(snack))
+    #rand_snack_recipe = snack[rand_snack]    
+    rand_dinner = rand.randrange(len(dinner))
+    rand_dinner_recipe = dinner[rand_dinner]
+    #rand_dessert = rand.randrange(len(dessert))
+    #rand_dessert_recipe = dessert[rand_dessert]
+    rand_beverage = rand.randrange(len(beverage))
+    rand_beverage_recipe = beverage[rand_beverage]
     if recipe_id != 0:
         recipe = get_object_or_404(Recipe, pk=recipe_id)
         ingredient_list = convert_servings(recipe, desired_servings)
@@ -31,7 +42,13 @@ def browse(request, recipe_id = 0, desired_servings = 0):
                'dinner': dinner,
                'dessert': dessert,
                'beverage': beverage,
+               #'rand_breakfast_recipe': rand_breakfast_recipe,
+               #'rand_snack_recipe': rand_snack_recipe,
+               'rand_dinner_recipe': rand_dinner_recipe,
+               #'rand_dessert_recipe': rand_dessert_recipe,
+               'rand_beverage_recipe': rand_beverage_recipe,
                'recipe_id': recipe_id,
+               'desired_servings': desired_servings,
                'recipe': recipe,
                'ingredient_list': ingredient_list,
                'instructions': instructions}
@@ -40,10 +57,6 @@ def browse(request, recipe_id = 0, desired_servings = 0):
 def match(request):
     context = {}
     return render(request, 'recipe_match/match.html', context)
-
-def random(request):
-    context = {}
-    return render(request, 'recipe_match/random.html', context)
 
 def menu(request):
     context = {}

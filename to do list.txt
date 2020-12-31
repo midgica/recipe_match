@@ -1,4 +1,3 @@
-sort browse page by category
 add random button to browse page (by category)
 user login to select and save menu, shopping list, inventory
 ability to select a recipe
