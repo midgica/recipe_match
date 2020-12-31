@@ -1,9 +1,10 @@
-add random button to browse page (by category)
+log in / log out button
 user login to select and save menu, shopping list, inventory
 ability to select a recipe
 ability to make a shopping list
 ingredient matcher
 ability to take kitchen inventory
+calendar to schedule meals
 
 
 
@@ -14,10 +15,8 @@ refactoring:
 
 
 features:
-	allow user to convert how many servings they want
 	user login to save menu, list, etc
 	list of recipes when grocery list is displayed
-	browse cookbook by category, not just alphabetical
 	convert recipe to international measures
 	calendar to schedule meals
 

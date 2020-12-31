@@ -13,11 +13,11 @@ def index(request):
 
 def browse(request, recipe_id = 0, desired_servings = 0):
     recipe_list = Recipe.objects.order_by('name')
-    breakfast = Recipe.objects.filter(category='2')
-    snack = Recipe.objects.filter(category='5')
-    dinner = Recipe.objects.filter(category='3')
-    dessert = Recipe.objects.filter(category='4')
-    beverage = Recipe.objects.filter(category='1')
+    breakfast = Recipe.objects.filter(category='2').order_by('name')
+    snack = Recipe.objects.filter(category='5').order_by('name')
+    dinner = Recipe.objects.filter(category='3').order_by('name')
+    dessert = Recipe.objects.filter(category='4').order_by('name')
+    beverage = Recipe.objects.filter(category='1').order_by('name')
     #rand_breakfast = rand.randrange(len(breakfast))
     #rand_breakfast_recipe = breakfast[rand_breakfast]
     #rand_snack = rand.randrange(len(snack))
