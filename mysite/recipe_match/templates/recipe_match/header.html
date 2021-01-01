@@ -19,7 +19,11 @@
 	<li><a href="{% url 'match' %}" style="color:orange;">Ingredient Matcher</a></li>
 	<li><a href="{% url 'menu' %}" style="color:green;">My Menu</a></li>
 	<li><a href="{% url 'shopping_list' %}" style="color:blue;">Shopping List</a></li>
-	<li><a style="color:purple;">Login</a><li>
+{% if not user.is_authenticated %}
+	<li><a href="{% url 'login' %}" style="color:purple;">Login</a><li>
+{% else %}
+	<li><a href="{% url 'logout' %}" style="color:purple;">Logout</a></li>
+{% endif %}
 </ul>
 <br><br><br><br><br><hr>
 </header>

@@ -1,11 +1,12 @@
-log in / log out button
+
 user login to select and save menu, shopping list, inventory
 ability to select a recipe
 ability to make a shopping list
 ingredient matcher
 ability to take kitchen inventory
+save favorite recipes
 calendar to schedule meals
-
+email service for password resets
 
 
 

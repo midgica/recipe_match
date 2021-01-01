@@ -1,8 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Recipe, Category
 from .convert_servings import convert_servings
 import random as rand
+from django.contrib.auth import views as auth_views
+from django.contrib.auth import login, authenticate
+from .forms import SignupForm
 
 # Create your views here.
 
@@ -79,3 +82,17 @@ def recipe(request, recipe_id, desired_servings):
                'instructions': instructions}
     return render(request, 'recipe_match/recipe.html', context)
 
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('browse')
+    else:
+        form = SignupForm()
+    return render(request, 'registration/signup.html', {'form': form})
