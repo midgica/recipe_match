@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Food, Unit, Ingredient, Category, Recipe
+from .models import Food, Unit, Ingredient, Category, Recipe, Menu, Shopping_List
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
@@ -37,9 +37,23 @@ class RecipeResource(resources.ModelResource):
 class RecipeAdmin(ImportExportModelAdmin):
     resource_class = RecipeResource
 
+class MenuResource(resources.ModelResource):
+    class Meta:
+        model = Menu
+class MenuAdmin(ImportExportModelAdmin):
+    resource_class = MenuResource
+
+class Shopping_ListResource(resources.ModelResource):
+    class Meta:
+        model = Shopping_List
+class Shopping_ListAdmin(ImportExportModelAdmin):
+    resource_class = Shopping_ListResource
+
 
 admin.site.register(Food, FoodAdmin)
 admin.site.register(Unit, UnitAdmin)
 admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Recipe, RecipeAdmin)
+admin.site.register(Menu, MenuAdmin)
+admin.site.register(Shopping_List, Shopping_ListAdmin)

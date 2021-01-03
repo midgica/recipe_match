@@ -19,11 +19,18 @@ features:
 	list of recipes when grocery list is displayed
 	convert recipe to international measures
 	calendar to schedule meals
+	mark foods as gluten free or diet friendly etc
+	allow users to upload completed menus for others to use
+	nutrition facts
 
 bugs: 
 
 
-
+name ideas:
+	menu venue
+	menu rescue
+	bitchin' kitchen meal deal
+	meal-o-matic
 
 
 

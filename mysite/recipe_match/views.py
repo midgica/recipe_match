@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from .models import Recipe, Category
+from .models import Recipe, Category, Menu
 from .convert_servings import convert_servings
 import random as rand
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
 from .forms import SignupForm
 
 # Create your views here.
@@ -60,6 +61,23 @@ def browse(request, recipe_id = 0, desired_servings = 0):
 def match(request):
     context = {}
     return render(request, 'recipe_match/match.html', context)
+
+def add(request, recipe_id, desired_servings):
+    #if user is logged in, add to their menu
+    if request.user.is_authenticated:
+        #create a menu if it doesn't exist, then add recipe
+        if Menu.objects.get(user = user):
+            None
+        else:
+            Menu.objects.create(user = user)
+        Menu.recipe_dict[recipe_id] = desired_servings
+        #stay on browse page
+        return browse(request, recipe_id, desired_servings)
+    #else redirect to login page
+    else:
+        context = {}
+        return render(request, 'recipe_match/login.html', context)
+
 
 def menu(request):
     context = {}
