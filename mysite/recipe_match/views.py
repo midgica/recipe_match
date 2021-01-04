@@ -66,22 +66,31 @@ def add(request, recipe_id, desired_servings):
     #if user is logged in, add to their menu
     if request.user.is_authenticated:
         #create a menu if it doesn't exist, then add recipe
-        if Menu.objects.get(user = user):
-            None
-        else:
-            Menu.objects.create(user = user)
-        Menu.recipe_dict[recipe_id] = desired_servings
+        try:
+            my_menu = Menu.objects.get(user = request.user)
+        except Menu.DoesNotExist:
+            my_menu = Menu.objects.create(user = request.user)
+        my_menu.recipe_dict[recipe_id] = desired_servings
         #stay on browse page
         return browse(request, recipe_id, desired_servings)
     #else redirect to login page
     else:
         context = {}
         return render(request, 'recipe_match/login.html', context)
+    ###this login page needs the form as context, where is it?
 
 
 def menu(request):
-    context = {}
-    return render(request, 'recipe_match/menu.html', context)
+    if not request.user.is_authenticated:
+        context = {} ###needs form as context
+        return render(request, 'recipe_match/login.html', context)
+    else:
+        try:
+            my_menu = Menu.objects.get(user = request.user)
+        except Menu.DoesNotExist:
+            my_menu = Menu.objects.create(user = request.user)
+        context = {'menu': my_menu}
+        return render(request, 'recipe_match/menu.html', context)
 
 def shopping_list(request):
     context = {}

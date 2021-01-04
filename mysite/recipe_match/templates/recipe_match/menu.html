@@ -4,12 +4,27 @@
 
 {% block content %}
 
-<p>This page displays your selected recipes.</p>
+<nav style="width:20%;">
 
-<nav>
+<details open>
+<summary>My Menu
+<ul>
+{% for recipe_id, desired_servings in menu.recipe_dict.items %}
+	<li><a href="{% url 'browse' recipe_id desired_servings %}">{{ recipe.name }}</a></li>
+{% endfor %}
+</ul>
+</details>
+
+<h3><a href="{% url 'shopping_list' %}">View my shopping list</a></h3>
+
 </nav>
 
-<article style="float:left;">
+
+
+<article style="float:left; width:80%;">
+
+<p>Coming soon: calendar view.</p>
+
 </article>
 
 {% endblock %}
