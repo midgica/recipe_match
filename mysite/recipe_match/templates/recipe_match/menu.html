@@ -10,7 +10,10 @@
 <summary>My Menu
 <ul>
 {% for each in selections %}
-	<li><a href="{% url 'browse' each.recipe.id each.desired_servings %}">{{ each.recipe.name }}, {{ each.desired_servings }} servings</a></li>
+	<li>
+		<a href="{% url 'delete_recipe' each.id %}">X &nbsp &nbsp</a>
+		<a href="{% url 'browse' each.recipe.id each.desired_servings %}">{{ each.recipe.name }}, {{ each.desired_servings }} servings</a>
+	</li>
 {% endfor %}
 </ul>
 </details>

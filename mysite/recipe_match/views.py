@@ -85,6 +85,15 @@ def add(request, recipe_id, desired_servings):
     ###this login page needs the form as context, where is it?
 
 
+def delete_recipe(request, selection_id):
+    my_menu = Menu.objects.get(user = request.user)
+    selection = Selection.objects.filter(pk = selection_id)
+    selection.delete()
+
+    context = {}
+    return menu(request)
+    
+
 def menu(request):
     if not request.user.is_authenticated:
         context = {} ###needs form as context
