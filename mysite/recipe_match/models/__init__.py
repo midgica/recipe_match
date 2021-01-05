@@ -5,3 +5,4 @@ from .category import Category
 from .recipe import Recipe
 from .menu import Menu
 from .shopping_list import Shopping_List
+from .selection import Selection

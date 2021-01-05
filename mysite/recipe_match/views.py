@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from .models import Recipe, Category, Menu
+from .models import Recipe, Category, Menu, Selection
 from .convert_servings import convert_servings
 import random as rand
 from django.contrib.auth import views as auth_views
@@ -70,7 +70,12 @@ def add(request, recipe_id, desired_servings):
             my_menu = Menu.objects.get(user = request.user)
         except Menu.DoesNotExist:
             my_menu = Menu.objects.create(user = request.user)
-        my_menu.recipe_dict[recipe_id] = desired_servings
+
+        recipe = Recipe.objects.get(pk=recipe_id)
+        selection = Selection.objects.create(menu = my_menu, recipe = recipe,
+                                             desired_servings = desired_servings)
+        #selection.save()
+
         #stay on browse page
         return browse(request, recipe_id, desired_servings)
     #else redirect to login page
@@ -89,7 +94,9 @@ def menu(request):
             my_menu = Menu.objects.get(user = request.user)
         except Menu.DoesNotExist:
             my_menu = Menu.objects.create(user = request.user)
-        context = {'menu': my_menu}
+        selections = my_menu.selection_set.all()
+        context = {'menu': my_menu,
+                   'selections': selections}
         return render(request, 'recipe_match/menu.html', context)
 
 def shopping_list(request):

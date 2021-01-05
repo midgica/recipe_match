@@ -9,8 +9,8 @@
 <details open>
 <summary>My Menu
 <ul>
-{% for recipe_id, desired_servings in menu.recipe_dict.items %}
-	<li><a href="{% url 'browse' recipe_id desired_servings %}">{{ recipe.name }}</a></li>
+{% for each in selections %}
+	<li><a href="{% url 'browse' each.recipe.id each.desired_servings %}">{{ each.recipe.name }}, {{ each.desired_servings }} servings</a></li>
 {% endfor %}
 </ul>
 </details>
@@ -22,6 +22,8 @@
 
 
 <article style="float:left; width:80%;">
+
+<p>Coming soon: title your menu and add notes</p>
 
 <p>Coming soon: calendar view.</p>
 

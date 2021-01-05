@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Food, Unit, Ingredient, Category, Recipe, Menu, Shopping_List
+from .models import Food, Unit, Ingredient, Category, Recipe, Menu
+from .models import Shopping_List, Selection
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
@@ -37,17 +38,24 @@ class RecipeResource(resources.ModelResource):
 class RecipeAdmin(ImportExportModelAdmin):
     resource_class = RecipeResource
 
+class SelectionInline(admin.StackedInline):
+    model = Selection
+    extra = 1
+
 class MenuResource(resources.ModelResource):
     class Meta:
         model = Menu
 class MenuAdmin(ImportExportModelAdmin):
     resource_class = MenuResource
+    inlines = [SelectionInline]
 
 class Shopping_ListResource(resources.ModelResource):
     class Meta:
         model = Shopping_List
 class Shopping_ListAdmin(ImportExportModelAdmin):
     resource_class = Shopping_ListResource
+
+
 
 
 admin.site.register(Food, FoodAdmin)
