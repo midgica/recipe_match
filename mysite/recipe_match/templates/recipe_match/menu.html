@@ -4,14 +4,14 @@
 
 {% block content %}
 
-<nav style="width:20%;">
+<nav style="width:30%;">
 
 <details open>
 <summary>My Menu
 <ul>
 {% for each in selections %}
-	<li>
-		<a href="{% url 'delete_recipe' each.id %}">X &nbsp &nbsp</a>
+	<li style="padding:2px;">
+		<a href="{% url 'delete_recipe' each.id %}"><span style="background:lightgray;">X</span> &nbsp</a>
 		<a href="{% url 'browse' each.recipe.id each.desired_servings %}">{{ each.recipe.name }}, {{ each.desired_servings }} servings</a>
 	</li>
 {% endfor %}
@@ -24,7 +24,7 @@
 
 
 
-<article style="float:left; width:80%;">
+<article style="float:left; width:70%;">
 
 <p>Coming soon: title your menu and add notes</p>
 

@@ -74,7 +74,6 @@ def add(request, recipe_id, desired_servings):
         recipe = Recipe.objects.get(pk=recipe_id)
         selection = Selection.objects.create(menu = my_menu, recipe = recipe,
                                              desired_servings = desired_servings)
-        #selection.save()
 
         #stay on browse page
         return browse(request, recipe_id, desired_servings)
