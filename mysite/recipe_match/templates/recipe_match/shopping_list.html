@@ -4,12 +4,32 @@
 
 {% block content %}
 
-<p>This page displays your shopping list.</p>
+<nav style="width:30%">
 
-<nav>
+<details open>
+<summary>My Menu
+<ul>
+{% for each in selections %}
+	<li style="padding:2px;">
+		<a href="{% url 'delete_recipe' each.id %}"><span style="background:lightgray;">X</span> &nbsp</a>
+		<a href="{% url 'browse' each.recipe.id each.desired_servings %}">{{ each.recipe.name }}, {{ each.desired_servings }} servings</a>
+	</li>
+{% endfor %}
+</ul>
+</details>
+
 </nav>
 
-<article style="float:left;">
+<article style="float:left; width:70%;">
+
+<h3>Ingredients Needed</h3>
+
+<ul>
+{% for each in shopping_list %}
+	<li>{{ each }}</li>
+{% endfor %}
+</ul>
+
 </article>
 
 {% endblock %}

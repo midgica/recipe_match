@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Recipe, Category, Menu, Selection
 from .convert_servings import convert_servings
+from .make_shopping_list import make_shopping_list
 import random as rand
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import login, authenticate
@@ -108,8 +109,20 @@ def menu(request):
         return render(request, 'recipe_match/menu.html', context)
 
 def shopping_list(request):
-    context = {}
-    return render(request, 'recipe_match/shopping_list.html', context)
+    if not request.user.is_authenticated:
+        context = {} ###needs form as context
+        return render(request, 'recipe_match/login.html', context)
+    else:
+        try:
+            my_menu = Menu.objects.get(user = request.user)
+        except Menu.DoesNotExist:
+            my_menu = Menu.objects.create(user = request.user)
+        selections = my_menu.selection_set.all()
+        shopping_list = make_shopping_list(my_menu)
+        context = {'menu': my_menu,
+                   'selections': selections,
+                   'shopping_list': shopping_list}
+        return render(request, 'recipe_match/shopping_list.html', context)
 
 def inventory(request):
     context = {}
