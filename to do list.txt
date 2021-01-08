@@ -1,5 +1,6 @@
-select a recipe and add to menu
+fill in default shopping list unit on ingredients
 
+convert ingredients to a universal unit
 ability to make a shopping list (while displaying menu)
 ingredient matcher
 ability to take kitchen inventory

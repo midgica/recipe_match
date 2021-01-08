@@ -12,6 +12,7 @@ class FoodResource(resources.ModelResource):
         model = Food
 class FoodAdmin(ImportExportModelAdmin):
     resource_class = FoodResource
+    list_display = ('name', 'plural')
 
 class UnitResource(resources.ModelResource):
     class Meta:
@@ -38,7 +39,7 @@ class RecipeResource(resources.ModelResource):
 class RecipeAdmin(ImportExportModelAdmin):
     resource_class = RecipeResource
 
-class SelectionInline(admin.StackedInline):
+class SelectionInline(admin.TabularInline):
     model = Selection
     extra = 1
 
