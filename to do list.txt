@@ -1,4 +1,5 @@
 fill in default shopping list unit on ingredients
+nutrition info links on ingredients
 
 convert ingredients to a universal unit
 ability to make a shopping list (while displaying menu)
@@ -34,7 +35,8 @@ name ideas:
 	meal-o-matic
 
 
-
+fdc.nal.usda.gov/api-key-signup.html 
+api key: o8dbaa6G2g4hlV0W4QwVsqIPQcyMrtE4NQ4zKq3V
 
 create a new branch to work on something
 

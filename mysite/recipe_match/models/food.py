@@ -1,4 +1,5 @@
 from django.db import models
+from .unit import Unit
 
 
 class Food(models.Model):
@@ -6,13 +7,15 @@ class Food(models.Model):
     plural = models.CharField(max_length=50)
 
     #units info
-    g_per_oz = models.PositiveSmallIntegerField()
-    g_per_c = models.PositiveSmallIntegerField()
+    g_per_oz = models.PositiveSmallIntegerField(default=28)
+    g_per_c = models.PositiveSmallIntegerField(default=160)
     g_per_in = models.PositiveSmallIntegerField(blank = True, null = True)
     g_per_no_unit = models.PositiveSmallIntegerField(blank = True, null = True)
-    shopping_list_unit = models.CharField(max_length=20, blank=True)
+    shopping_list_unit = models.ForeignKey(Unit, on_delete=models.CASCADE,
+                                           blank=True, null=True)
     
     #nutrition info
+    nutrition_link = models.CharField(max_length=200, blank=True)
     calories_in_100g = models.PositiveSmallIntegerField(default=0)
     fat = models.CharField(max_length=10, blank=True) #g
     saturated_fat = models.CharField(max_length=10, blank=True) #g
