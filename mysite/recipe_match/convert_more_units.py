@@ -2,7 +2,7 @@
 
 
 from .models import Food, Unit, Ingredient
-
+from decimal import Decimal
 
 
 def convert_more_units(food, amount, units_in, units_out):
@@ -11,7 +11,7 @@ def convert_more_units(food, amount, units_in, units_out):
         return None
 
     try:
-        float(amount.strip())
+        amount = Decimal(amount.strip(''))
     except:
         return "Please enter a number."
 
