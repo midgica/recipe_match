@@ -19,6 +19,7 @@ class UnitResource(resources.ModelResource):
         model = Unit
 class UnitAdmin(ImportExportModelAdmin):
     resource_class = UnitResource
+    list_display = ('abbr', 'full')
 
 class IngredientResource(resources.ModelResource):
     class Meta:

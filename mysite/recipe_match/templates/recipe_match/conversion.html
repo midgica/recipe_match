@@ -1,0 +1,52 @@
+{% extends 'recipe_match/header.html' %}
+
+<title>Unit Conversion</title>
+
+{% block content %}
+
+<nav style = "width:30%;">
+</nav>
+
+<article style="float:left; width;70%;">
+
+<p>Values when converting from volumetric to mass measurements are estimates.</p>
+
+
+
+<form action="conversion/" method="post">
+{% csrf_token %}
+
+<select name="all_foods">
+{% for each in all_foods %}
+	<option value="each">{{each}}</option>
+{% endfor %}
+</select>
+
+<input type="text" name="amount">
+
+<select id="start_with" name="start_with">
+{% for each in all_units %}
+	<option value="each">{{each}}</option>
+{% endfor %}
+</select>
+
+<br><br><br>
+
+<label for="units_out">Convert to:</label>
+<select id="end_with" name="end_with">
+{% for each in all_units %}
+	<option value="each">{{each}}</option>
+{% endfor %}
+</select>
+
+</form>
+
+<br><br><br>
+
+<p>Result: {{new_amount}}</p>
+
+
+
+<article>
+
+{% endblock %}

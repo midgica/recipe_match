@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from .models import Recipe, Category, Menu, Selection
+from .models import Recipe, Category, Menu, Selection, Food, Unit
 from .convert_servings import convert_servings
+from .convert_more_units import convert_more_units
 from .make_shopping_list import make_shopping_list
 import random as rand
 from django.contrib.auth import views as auth_views
@@ -123,6 +124,19 @@ def shopping_list(request):
                    'selections': selections,
                    'shopping_list': shopping_list}
         return render(request, 'recipe_match/shopping_list.html', context)
+
+def conversion(request, food=None, amount=None, units_in=None, units_out=None):
+    all_foods = Food.objects.all().order_by('name')
+    all_units = Unit.objects.all().order_by('abbr')
+    new_amount = convert_more_units(food, amount, units_in, units_out)
+    context = {'all_foods': all_foods,
+               'all_units': all_units,
+               'food': food,
+               'amount': amount,
+               'units_in': units_in,
+               'units_out': units_out,
+               'new_amount': new_amount}
+    return render(request, 'recipe_match/conversion.html', context)
 
 def inventory(request):
     context = {}

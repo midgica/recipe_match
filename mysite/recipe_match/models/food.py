@@ -10,7 +10,11 @@ class Food(models.Model):
     g_per_oz = models.PositiveSmallIntegerField(default=28)
     g_per_c = models.PositiveSmallIntegerField(default=160)
     g_per_in = models.PositiveSmallIntegerField(blank = True, null = True)
-    g_per_no_unit = models.PositiveSmallIntegerField(blank = True, null = True)
+    g_per_breast = models.PositiveSmallIntegerField(blank = True, null = True)
+    g_per_clove = models.PositiveSmallIntegerField(blank = True, null = True)
+    g_per_head = models.PositiveSmallIntegerField(blank = True, null = True)
+    g_per_stalk = models.PositiveSmallIntegerField(blank = True, null = True)
+    g_per_whole = models.PositiveSmallIntegerField(blank = True, null = True)
     shopping_list_unit = models.ForeignKey(Unit, on_delete=models.CASCADE,
                                            blank=True, null=True)
     
