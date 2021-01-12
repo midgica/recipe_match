@@ -16,15 +16,17 @@
 <form action="{% url 'conversion' food amount units_in units_out %}" method="post">
 {% csrf_token %}
 
-<select name="food">
+<select id="food" name="food">
+	<option value="None">---</option>
 {% for each in all_foods %}
 	<option value="each">{{each}}</option>
 {% endfor %}
 </select>
 
-<input type="text" name="amount">
+<input type="text" id="amount" name="amount">
 
 <select id="units_in" name="units_in">
+	<option value="None">---</option>
 {% for each in all_units %}
 	<option value="each">{{each}}</option>
 {% endfor %}
@@ -34,15 +36,19 @@
 
 <label for="units_out">Convert to:</label>
 <select id="units_out" name="units_out">
+	<option value="None">---</option>
 {% for each in all_units %}
 	<option value="each">{{each}}</option>
 {% endfor %}
 </select>
 
+<br><br>
+<input type="submit" value="Go">
+
 </form>
 
 <br>
-<a href="{% url 'conversion' food amount units_in units_out %}">Go</a>
+<!-- <a href="{% url 'conversion' food amount units_in units_out %}">Go</a> -->
 
 <br><br><br>
 

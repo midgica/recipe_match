@@ -2,6 +2,9 @@ convert ingredients to a universal unit to make shopping list
 ability to make a shopping list (while displaying menu)
 unit conversion page
 ingredient matcher
+contact me form
+report error form
+patreon link
 ability to take kitchen inventory
 save favorite recipes or notes on recipes?
 calendar to schedule meals
