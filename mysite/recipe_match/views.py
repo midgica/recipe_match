@@ -8,7 +8,7 @@ import random as rand
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
-from .forms import SignupForm
+from .forms import SignupForm #, ConversionForm
 
 # Create your views here.
 
@@ -129,13 +129,16 @@ def conversion(request, food=None, amount=None, units_in=None, units_out=None):
     all_foods = Food.objects.all().order_by('name')
     all_units = Unit.objects.all().order_by('abbr')
     new_amount = convert_more_units(food, amount, units_in, units_out)
+    #form = ConversionForm
     context = {'all_foods': all_foods,
                'all_units': all_units,
                'food': food,
                'amount': amount,
                'units_in': units_in,
                'units_out': units_out,
-               'new_amount': new_amount}
+               'new_amount': new_amount,
+               #'form': form
+               }
     return render(request, 'recipe_match/conversion.html', context)
 
 def inventory(request):

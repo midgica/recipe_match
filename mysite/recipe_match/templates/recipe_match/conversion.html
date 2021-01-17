@@ -12,6 +12,18 @@
 <p>Values when converting from volumetric to mass measurements are estimates.</p>
 
 
+<form action="" method="post"
+{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Go">
+</form>
+
+
+
+
+
+
+<br><br><br><br><br><br><hr>
 
 <form action="{% url 'conversion' food amount units_in units_out %}" method="post">
 {% csrf_token %}
