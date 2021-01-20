@@ -13,17 +13,21 @@ class SignupForm(UserCreationForm):
 
 
 
-##class ConversionForm(forms.Form):
-##    all_foods = []
-##    all_units = []
-##    for each in Food.objects.all().order_by('name'):
-##        all_foods.append(each)
-##    for each in Unit.objects.all().order_by('abbr'):
-##        all_units.append(each)
-##    food = forms.MultipleChoiceField(choices=all_foods)
-##    amount = forms.DecimalField(max_digits=10, decimal_places=3)
-##    units_in = forms.MultipleChoiceField(choices=all_units)
-##    units_out = forms.MultipleChoiceField(choices=all_units)
-##
-##    class Meta:
-##        fields = ('food', 'amount', 'units_in', 'units_out')
+class ConversionForm(forms.Form):
+    all_foods = Food.objects.all().order_by('name')
+    all_units = Unit.objects.all().order_by('abbr')
+    all_foods_list = [(None, "---")]
+    for each in all_foods:
+        all_foods_list.append((each, each.name))
+    all_units_list = [(None, "---")]
+    for each in all_units:
+        all_units_list.append((each, each.abbr))
+
+    
+    food = forms.ChoiceField(choices=all_foods_list)
+    amount = forms.DecimalField(max_digits=10, decimal_places=3)
+    units = forms.ChoiceField(choices=all_units_list)
+    convert_to = forms.ChoiceField(choices=all_units_list)
+
+    class Meta:
+        fields = ('food', 'amount', 'units', 'convert_to')

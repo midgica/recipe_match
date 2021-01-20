@@ -8,7 +8,7 @@ import random as rand
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
-from .forms import SignupForm #, ConversionForm
+from .forms import SignupForm, ConversionForm
 
 # Create your views here.
 
@@ -125,19 +125,19 @@ def shopping_list(request):
                    'shopping_list': shopping_list}
         return render(request, 'recipe_match/shopping_list.html', context)
 
-def conversion(request, food=None, amount=None, units_in=None, units_out=None):
+def conversion(request, food=None, amount=None, units=None, convert_to=None):
     all_foods = Food.objects.all().order_by('name')
     all_units = Unit.objects.all().order_by('abbr')
-    new_amount = convert_more_units(food, amount, units_in, units_out)
-    #form = ConversionForm
+    new_amount = convert_more_units(food, amount, units, convert_to)
+    form = ConversionForm
     context = {'all_foods': all_foods,
                'all_units': all_units,
                'food': food,
                'amount': amount,
-               'units_in': units_in,
-               'units_out': units_out,
+               'units': units,
+               'convert_to': convert_to,
                'new_amount': new_amount,
-               #'form': form
+               'form': form
                }
     return render(request, 'recipe_match/conversion.html', context)
 
