@@ -31,3 +31,11 @@ class ConversionForm(forms.Form):
 
     class Meta:
         fields = ('food', 'amount', 'units', 'convert_to')
+
+    def __init__(self, *args, **kwargs):
+        super(ConversionForm, self).__init__(*args, **kwargs)
+        self.fields['food'].required = False
+        self.fields['amount'].required = False
+        self.fields['units'].required = False
+        self.fields['convert_to'].required = False
+

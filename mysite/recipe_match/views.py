@@ -125,18 +125,28 @@ def shopping_list(request):
                    'shopping_list': shopping_list}
         return render(request, 'recipe_match/shopping_list.html', context)
 
-def conversion(request, food=None, amount=None, units=None, convert_to=None):
+def conversion(request):
+    
     all_foods = Food.objects.all().order_by('name')
     all_units = Unit.objects.all().order_by('abbr')
-    new_amount = convert_more_units(food, amount, units, convert_to)
-    form = ConversionForm
+
+    if request.method == "GET":
+        food = request.GET.get('food', default=None)
+        amount = request.GET.get('amount', default=None)
+        units = request.GET.get('units', default=None)
+        convert_to = request.GET.get('convert_to', default=None)
+        form = ConversionForm(request.GET)
+        new_amount = convert_more_units(food, amount, units, convert_to)
+
+    else:
+        form = ConversionForm
+        new_amount = ""
+        
+
     context = {'all_foods': all_foods,
                'all_units': all_units,
-               'food': food,
-               'amount': amount,
-               'units': units,
-               'convert_to': convert_to,
                'new_amount': new_amount,
+               'convert_to': convert_to,
                'form': form
                }
     return render(request, 'recipe_match/conversion.html', context)
