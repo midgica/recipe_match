@@ -7,7 +7,7 @@ from recipe_match.convert_fractions import convert_fractions
 class Ingredient(models.Model):
     ##name = models.CharField(max_length=100)
     food = models.ForeignKey(Food, on_delete=models.CASCADE, blank=True, null=True)
-    amount = models.DecimalField(max_digits=7, decimal_places=4)
+    amount = models.DecimalField(max_digits=10, decimal_places=4)
     ##unit = models.CharField(max_length=20, blank=True)
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=True, null=True)
     notes = models.CharField(max_length=100, blank=True)
