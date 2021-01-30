@@ -1,5 +1,7 @@
 from .models import Food, Ingredient, Menu, Recipe, Selection, Shopping_List, Unit
 from .convert_servings import convert_servings
+from .convert_more_units import convert_more_units
+from .unconvert_fractions import unconvert_fractions
 
 def make_shopping_list(menu):
 
@@ -9,63 +11,56 @@ def make_shopping_list(menu):
 
     #break recipes into individual ingredients
     all_ingredients = {}
-    duplicate_ingredients = {}
     for sel in selections:
         #convert ingredients by number of servings
         ingredient_list = convert_servings(sel.recipe, sel.desired_servings)
         for ingred in ingredient_list:
+            #convert to g
+            ingred_grams = convert_more_units(ingred.food, ingred.amount,
+                                              ingred.unit, 'g')
+            #if there's already a value for this ingredient
             try:
-                #if there's already a value for this ingredient
-                if all_ingredients[ingred.food]:
-                    #if there's only one tuple there
-                    try:
-                        len(all_ingredients[ingred.food]) == 2
-                        for amt, unit in all_ingredients[ingred.food]:
-                            #if units match, add them together
-                            if ingred.unit == unit:
-                                new_amt = amt + ingred.amount
-                                all_ingredients[ingred.food] = (new_amt, unit)
-                            #otherwise append more values
-                            else:
-                                all_ingredients.setdefault(key, [])
-                                all_ingredients[ingred.food].append(ingred.amount,
-                                                                    ingred.unit)
-
-                    except:  #if there's more than one tuple
-                        ing_tuple_list = all_ingredients[ingred.food]
-                        for each in ing_tuple_list:
-                            (amt, unit) = ing_tuple_list[0]
-                            #if ingredient units match, add them together
-                            if ingred.unit == unit:
-                                new_amt = amt + ingred.amount
-                                all_ingredients[ingred.food] = (new_amt, unit)
-                                amt = None
-                                unit = None
-                        #if there weren't any matches in the for loop
-                        #append more values. if there were matches, append none
-                            else:
-                                try:
-                                    all_ingredients.setdefault(key, [])
-                                    all_ingredients[ingred.food].append(ingred.amount,
-                                                                        ingred.unit)
-                                except: #if appending none produces error
-                                    None
+                old_value = all_ingredients[ingred.food]
+                new_value = (all_ingredients[ingred.food] + ingred_grams)
+                all_ingredients[ingred.food] = new_value
+            #if no values yet
             except:
-                all_ingredients[ingred.food] = (ingred.amount, ingred.unit)
+                all_ingredients[ingred.food] = ingred_grams
+                  
+    #now we have a dict of food names to gram amounts
 
-
+    #create empty shopping list
     shopping_list = []
-    for ingred in all_ingredients.keys():            
-        for tup in all_ingredients[ingred]:
-            tup = all_ingredients[ingred]
-            unit = None
-            try:
-                (amt, unit) = tup
-            except ValueError:
-                (amt) = tup
-        shopping_list.append(Ingredient.objects.create(food = ingred,
-                                                       amount = amt,
-                                                       unit = unit))
+
+    #work with each ingredient
+    for food in all_ingredients.keys():
+        #convert to preferred shopping list unit
+        #if unit isn't picked, convert to "whole"
+        if food.shopping_list_unit == None:
+            str_value = convert_more_units(food,
+                                           all_ingredients[food],
+                                           'g', 'whole')
+            final_value = unconvert_fractions(str_value)
+            shopping_list.append(Ingredient.objects.create(food = food,
+                                                           amount = final_value))
+        #if unit is "whole", create ingredient without unit
+        elif food.shopping_list_unit.abbr == 'whole':
+            str_value = convert_more_units(food,
+                                           all_ingredients[food],
+                                           'g', 'whole')
+            final_value = unconvert_fractions(str_value)
+            shopping_list.append(Ingredient.objects.create(food = food,
+                                                           amount = final_value))
+        #otherwise use unit as entered
+        else:
+            str_value = convert_more_units(food,
+                                           all_ingredients[food],
+                                           'g', food.shopping_list_unit.abbr)
+            final_value = unconvert_fractions(str_value)
+            shopping_list.append(Ingredient.objects.create(food = food,
+                                                           amount = final_value,
+                                                           unit = food.shopping_list_unit))
+            
 
 
     return shopping_list
@@ -75,4 +70,3 @@ def make_shopping_list(menu):
 
 
 ### currently returns same shopping_list for multiple recipes as one recipe
-### currently does not account for desired_servings

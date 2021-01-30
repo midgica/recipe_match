@@ -15,6 +15,7 @@ class Food(models.Model):
     g_per_head = models.PositiveSmallIntegerField(blank = True, null = True)
     g_per_stalk = models.PositiveSmallIntegerField(blank = True, null = True)
     g_per_slice = models.PositiveSmallIntegerField(blank = True, null = True)
+    g_per_leaf = models.PositiveSmallIntegerField(blank = True, null = True)
     g_per_whole = models.PositiveSmallIntegerField(blank = True, null = True)
     shopping_list_unit = models.ForeignKey(Unit, on_delete=models.CASCADE,
                                            blank=True, null=True)

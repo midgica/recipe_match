@@ -92,6 +92,12 @@ def convert_more_units(food, amount, units, convert_to):
         else:
             amt_in_g = (amount * food.g_per_stalk)
             amt_in_c = (amt_in_g / food.g_per_c)
+    elif units.abbr == "leaves":
+        if not food.g_per_leaf:
+            return "Sorry, this food doesn't have that measurement."
+        else:
+            amt_in_g = (amount * food.g_per_leaf)
+            amt_in_c = (amt_in_g / food.g_per_c)
     elif units.abbr == "whole":
         if not food.g_per_whole:
             return "Sorry, this food doesn't have that measurement."
@@ -148,6 +154,11 @@ def convert_more_units(food, amount, units, convert_to):
             return "Sorry, this food doesn't have that measurement."
         else:
             result = (amt_in_g / food.g_per_stalk)
+    elif convert_to.abbr == "leaves":
+        if not food.g_per_leaf:
+            return "Sorry, this food doesn't have that measurement."
+        else:
+            result = (amt_in_g / food.g_per_leaf)
     elif convert_to.abbr == "whole":
         if not food.g_per_whole:
             return "Sorry, this food doesn't have that measurement."

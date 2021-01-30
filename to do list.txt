@@ -1,6 +1,10 @@
+make_shopping_list's str_value is returning None, causing errors in the construction of the list
+
+
+
+
 convert ingredients to a universal unit to make shopping list
 ability to make a shopping list (while displaying menu)
-unit conversion page
 ingredient matcher
 contact me form
 report error form
