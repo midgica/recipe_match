@@ -21,19 +21,20 @@ def browse(request, recipe_id = 0, desired_servings = 0):
     recipe_list = Recipe.objects.order_by('name')
     breakfast = Recipe.objects.filter(category='2').order_by('name')
     snack = Recipe.objects.filter(category='5').order_by('name')
+    salad = Recipe.objects.filter(category='8').order_by('name')#
+    sauce = Recipe.objects.filter(category='6').order_by('name')#
     dinner = Recipe.objects.filter(category='3').order_by('name')
     dessert = Recipe.objects.filter(category='4').order_by('name')
     beverage = Recipe.objects.filter(category='1').order_by('name')
-    #rand_breakfast = rand.randrange(len(breakfast))
-    #rand_breakfast_recipe = breakfast[rand_breakfast]
-    #rand_snack = rand.randrange(len(snack))
-    #rand_snack_recipe = snack[rand_snack]    
-    rand_dinner = rand.randrange(len(dinner))
-    rand_dinner_recipe = dinner[rand_dinner]
-    #rand_dessert = rand.randrange(len(dessert))
-    #rand_dessert_recipe = dessert[rand_dessert]
-    rand_beverage = rand.randrange(len(beverage))
-    rand_beverage_recipe = beverage[rand_beverage]
+    misc = Recipe.objects.filter(category='7').order_by('name')#
+    rand_breakfast_recipe = breakfast[rand.randrange(len(breakfast))]
+    rand_snack_recipe = snack[rand.randrange(len(snack))]
+    rand_salad_recipe = salad[rand.randrange(len(salad))]
+    rand_sauce_recipe = sauce[rand.randrange(len(sauce))]
+    rand_dinner_recipe = dinner[rand.randrange(len(dinner))]
+    rand_dessert_recipe = dessert[rand.randrange(len(dessert))]
+    rand_beverage_recipe = beverage[rand.randrange(len(beverage))]
+    rand_misc_recipe = misc[rand.randrange(len(misc))]
     if recipe_id != 0:
         recipe = get_object_or_404(Recipe, pk=recipe_id)
         ingredient_list = convert_servings(recipe, desired_servings)
@@ -45,14 +46,20 @@ def browse(request, recipe_id = 0, desired_servings = 0):
     context = {'recipe_list': recipe_list,
                'breakfast': breakfast,
                'snack': snack,
+               'salad': salad,
+               'sauce': sauce,
                'dinner': dinner,
                'dessert': dessert,
                'beverage': beverage,
-               #'rand_breakfast_recipe': rand_breakfast_recipe,
-               #'rand_snack_recipe': rand_snack_recipe,
+               'misc': misc,
+               'rand_breakfast_recipe': rand_breakfast_recipe,
+               'rand_snack_recipe': rand_snack_recipe,
+               'rand_salad_recipe': rand_salad_recipe,
+               'rand_sauce_recipe': rand_sauce_recipe,
                'rand_dinner_recipe': rand_dinner_recipe,
-               #'rand_dessert_recipe': rand_dessert_recipe,
+               'rand_dessert_recipe': rand_dessert_recipe,
                'rand_beverage_recipe': rand_beverage_recipe,
+               'rand_misc_recipe': rand_misc_recipe,
                'recipe_id': recipe_id,
                'desired_servings': desired_servings,
                'recipe': recipe,

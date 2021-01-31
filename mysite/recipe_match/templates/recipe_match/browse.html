@@ -10,16 +10,29 @@
 <!-- Random Button --> 
 <ul>
 {% if rand_breakfast_recipe %}
-	<li><a href="{% url 'browse' rand_breakfast_recipe.id rand_breakfast_recipe.servings %}">Random Breakfast</a></li>
+	<li><a href="{% url 'browse' rand_breakfast_recipe.id rand_breakfast_recipe.servings %}">Random Breakfast or Brunch</a></li>
 {% endif %}
 {% if rand_snack_recipe %}
-	<li><a href="{% url 'browse' rand_snack_recipe.id rand_snack_recipe.servings %}">Random Snack</a></li>
+	<li><a href="{% url 'browse' rand_snack_recipe.id rand_snack_recipe.servings %}">Random Snack or Appetizer</a></li>
 {% endif %}
-	<li><a href="{% url 'browse' rand_dinner_recipe.id rand_dinner_recipe.servings %}">Random Dinner</a></li>
+{% if rand_salad_recipe %}
+	<li><a href="{% url 'browse' rand_salad_recipe.id rand_salad_recipe.servings %}">Random Salad or Side</a></li>
+{% endif %}
+{% if rand_sauce_recipe %}
+	<li><a href="{% url 'browse' rand_sauce_recipe.id rand_sauce_recipe.servings %}">Random Sauce or Dressing</a></li>
+{% endif %}
+{% if rand_dinner_recipe %}
+	<li><a href="{% url 'browse' rand_dinner_recipe.id rand_dinner_recipe.servings %}">Random Entr&#233;e</a></li>
+{% endif %}
 {% if rand_dessert_recipe %}
 	<li><a href="{% url 'browse' rand_dessert_recipe.id rand_dessert_recipe.servings %}">Random Dessert</a></li>
 {% endif %}
+{% if rand_beverage_recipe %}
 	<li><a href="{% url 'browse' rand_beverage_recipe.id rand_beverage_recipe.servings %}">Random Beverage</a></li>
+{% endif %}
+{% if rand_misc_recipe %}
+	<li><a href="{% url 'browse' rand_misc_recipe.id rand_misc_recipe.servings %}">Random Miscellaneous</a></li>
+{% endif %}
 </ul>
 
 <br>
@@ -27,7 +40,7 @@
 
 {% if breakfast %}
 	<details>
-	<summary>Breakfast</summary>
+	<summary>Breakfast & Brunch</summary>
 	<ul>
 	{% for recipe in breakfast %}
 		<li><a href="{% url 'browse' recipe.id recipe.servings %}">{{ recipe.name }}</a></li>
@@ -39,7 +52,7 @@
 
 {% if snack %}
 	<details>
-	<summary>Snack</summary>
+	<summary>Snacks & Appetizers</summary>
 	<ul>
 	{% for recipe in snack %}
 		<li><a href="{% url 'browse' recipe.id recipe.servings %}">{{ recipe.name }}</a></li>
@@ -49,9 +62,33 @@
 {% endif %}
 
 
+{% if salad %}
+	<details>
+	<summary>Salads & Sides</summary>
+	<ul>
+	{% for recipe in salad %}
+		<li><a href="{% url 'browse' recipe.id recipe.servings %}">{{ recipe.name }}</a></li>
+	{% endfor %}
+	</ul>
+	</details>
+{% endif %}
+
+
+{% if sauce %}
+	<details>
+	<summary>Sauces & Dressings</summary>
+	<ul>
+	{% for recipe in sauce %}
+		<li><a href="{% url 'browse' recipe.id recipe.servings %}">{{ recipe.name }}</a></li>
+	{% endfor %}
+	</ul>
+	</details>
+{% endif %}
+
+
 {% if dinner %}
 	<details>
-	<summary>Dinner</summary>
+	<summary>Entr&#233;es</summary>
 	<ul>
 	{% for recipe in dinner %}
 		<li><a href="{% url 'browse' recipe.id recipe.servings %}">{{ recipe.name }}</a></li>
@@ -63,7 +100,7 @@
 
 {% if dessert %}
 	<details>
-	<summary>Dessert</summary>
+	<summary>Desserts</summary>
 	<ul>
 	{% for recipe in dessert %}
 		<li><a href="{% url 'browse' recipe.id recipe.servings %}">{{ recipe.name }}</a></li>
@@ -75,9 +112,21 @@
 
 {% if beverage %}
 	<details>
-	<summary>Beverage</summary>
+	<summary>Beverages</summary>
 	<ul>
 	{% for recipe in beverage %}
+		<li><a href="{% url 'browse' recipe.id recipe.servings %}">{{ recipe.name }}</a></li>
+	{% endfor %}
+	</ul>
+	</details>
+{% endif %}
+
+
+{% if misc %}
+	<details>
+	<summary>Miscellaneous</summary>
+	<ul>
+	{% for recipe in misc %}
 		<li><a href="{% url 'browse' recipe.id recipe.servings %}">{{ recipe.name }}</a></li>
 	{% endfor %}
 	</ul>
