@@ -16,7 +16,7 @@ def convert_more_units(food, amount, units, convert_to):
         return "Please select an ingredient."
 
     try:
-        amount = Decimal(amount.strip(''))
+        amount = Decimal(amount)
     except:
         return "Please enter a number."
     

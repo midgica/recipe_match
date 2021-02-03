@@ -1,5 +1,4 @@
-make_shopping_list's str_value is returning None, causing errors in the construction of the list
-
+working on make_shopping_list, unconvert_fractions is still really broken
 
 
 

@@ -1,5 +1,6 @@
 from .convert_units import convert_units
 from .models import Ingredient
+from decimal import Decimal
 
 def convert_servings(recipe, desired_servings):
 
@@ -14,7 +15,7 @@ def convert_servings(recipe, desired_servings):
     ingredient_list = recipe.ingredient_list.all()
     new_ingredient_list = []
     for ing in ingredient_list:
-        amount = (float(ing.amount) * float(coefficient))
+        amount = (Decimal(ing.amount) * Decimal(coefficient))
         new_ingredient = Ingredient(food = ing.food,
                                     amount = amount,
                                     unit = ing.unit,
