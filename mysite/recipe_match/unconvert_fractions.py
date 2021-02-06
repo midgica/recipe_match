@@ -16,10 +16,11 @@ def unconvert_fractions(amt_str):
 
     elif len(amt_list) == 1:
         #find if it's a whole or frac
-        if "/" in amt_list:
+        if '/' in amt_list[0]:
             frac_list = amt_list[0].split("/")
             amount = (Decimal(frac_list[0]) / Decimal(frac_list[1]))
         else:
+            print(amt_list) #debug
             amount = Decimal(amt_list[0])
 
     else:

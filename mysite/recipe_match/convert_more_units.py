@@ -59,7 +59,8 @@ def convert_more_units(food, amount, units, convert_to):
 
     #weight measurements
     elif units.abbr == "g":
-        None
+        amt_in_g = amount
+        amt_in_c = (amt_in_g / food.g_per_c)
     elif units.abbr == "lb":
         amt_in_g = (amount * Decimal(453.6))
         amt_in_c = (amt_in_g / food.g_per_c)

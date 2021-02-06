@@ -63,3 +63,11 @@ def validate_unit_on_food():
         else:
             raise Exception("unit not found in validate_unit_on_food")
             
+
+
+def validate_shopping_list_unit():
+
+    for food in Food.objects.all():
+        if shopping_list_unit == None:
+            msg = ("no shopping list unit for " + food.name)
+            raise Exception(msg)
