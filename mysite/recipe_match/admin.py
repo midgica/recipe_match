@@ -40,6 +40,7 @@ class RecipeResource(resources.ModelResource):
         model = Recipe
 class RecipeAdmin(ImportExportModelAdmin):
     resource_class = RecipeResource
+    list_display = ('name', 'category')
 
 class SelectionInline(admin.TabularInline):
     model = Selection
