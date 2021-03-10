@@ -14,6 +14,7 @@ class Recipe(models.Model):
                                               validators=[MaxValueValidator(10),
                                                           MinValueValidator(0)])
     ingredient_list = models.ManyToManyField(Ingredient)
+                                             #limit_choices_to={'amount': 7})
     instructions = models.TextField(max_length=5000)
     source = models.CharField(max_length=1000, blank=True)
     
