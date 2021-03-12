@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django import forms
 from .models import Food, Unit, Ingredient, Category, Recipe, Menu
 from .models import Shopping_List, Selection
 from import_export import resources
@@ -38,10 +39,20 @@ class CategoryAdmin(ImportExportModelAdmin):
 class RecipeResource(resources.ModelResource):    
     class Meta:
         model = Recipe
+class RecipeForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(RecipeForm, self).__init__(*args, **kwargs)
+        recent_ingredients = Ingredient.objects.all().order_by('pk').reverse()[:50]
+        w = self.fields['ingredient_list'].widget
+        choices = []
+        for choice in recent_ingredients:
+            choices.append((choice.id, choice.__str__))
+        w.choices = choices
 class RecipeAdmin(ImportExportModelAdmin):
     resource_class = RecipeResource
     filter_horizontal = ('ingredient_list',)
     list_display = ('name', 'category')
+    form = RecipeForm
 
 class SelectionInline(admin.TabularInline):
     model = Selection
