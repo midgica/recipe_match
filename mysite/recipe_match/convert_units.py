@@ -2,6 +2,7 @@
 #if it's too big, convert it to something bigger
 #fraction conversion happens in ingredient.py and convert_fractions.py, not here
 from .models import Ingredient, Unit
+from decimal import Decimal
 
 #tsp, tbsp, c
 #oz, lb
@@ -10,14 +11,14 @@ from .models import Ingredient, Unit
 def convert_units(ingredient):
     if ingredient.unit:
         if ingredient.unit.abbr == "tsp":
-            multiply_amt = 1
+            multiply_amt = Decimal(1)
             new_abbr = "tsp"
 
             if ingredient.amount < 0.125:
-                multiply_amt = 8
+                multiply_amt = Decimal(8)
                 new_abbr = "pinch"
             elif ingredient.amount > 3:
-                multiply_amt = (1/3)
+                multiply_amt = Decimal(1/3)
                 new_abbr = "tbsp"
             else:
                 None
@@ -29,14 +30,14 @@ def convert_units(ingredient):
 	    # don't forget to print this instead of the old ingredient
 
         if ingredient.unit.abbr == "tbsp":
-            multiply_amt = 1
+            multiply_amt = Decimal(1)
             new_abbr = "tbsp"
 
             if ingredient.amount < 1:
-                multiply_amt = 3
+                multiply_amt = Decimal(3)
                 new_abbr = "tsp"
             elif ingredient.amount > 4:
-                multiply_amt = (1/4)
+                multiply_amt = Decimal(1/4)
                 new_abbr = "c"
             else:
                 None
@@ -47,11 +48,11 @@ def convert_units(ingredient):
                               notes = ingredient.notes)
 
         if ingredient.unit.abbr == "c":
-            multiply_amt = 1
+            multiply_amt = Decimal(1)
             new_abbr = "c"
 
             if ingredient.amount < .25:
-                multiply_amt = 16
+                multiply_amt = Decimal(16)
                 new_abbr = "tbsp"
             else:
                 None
@@ -63,11 +64,11 @@ def convert_units(ingredient):
 
 
         if ingredient.unit.abbr == "oz":
-            multiply_amt = 1
+            multiply_amt = Decimal(1)
             new_abbr = "oz"
 
             if ingredient.amount > 16:
-                multiply_amt = (1/16)
+                multiply_amt = Decimal(1/16)
                 new_abbr = "lb"
             else:
                 None
@@ -79,11 +80,11 @@ def convert_units(ingredient):
 
 
         if ingredient.unit.abbr == "lb":
-            multiply_amt = 1
+            multiply_amt = Decimal(1)
             new_abbr = "lb"
 
             if ingredient.amount < .25:
-                multiply_amt = 16
+                multiply_amt = Decimal(16)
                 new_abbr = "oz"
             else:
                 None
