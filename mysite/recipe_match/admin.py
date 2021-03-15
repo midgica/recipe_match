@@ -43,14 +43,16 @@ class RecipeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(RecipeForm, self).__init__(*args, **kwargs)
         recent_ingredients = Ingredient.objects.all().order_by('pk').reverse()[:50]
-##        current_recipe = Recipe.objects.get(pk=recipe.id)
-##        current_ingredients = current_recipe.ingredient_list
+        if self.instance.id:
+            current_recipe = Recipe.objects.get(pk=self.instance.id)
+            current_ingredients = current_recipe.ingredient_list.all()
+            ingredients = recent_ingredients | current_ingredients
+        else:
+            ingredients = recent_ingredients
         w = self.fields['ingredient_list'].widget
         choices = []
-        for choice in recent_ingredients:
+        for choice in ingredients:
             choices.append((choice.id, choice.__str__))
-##        for choice in current_ingredients:
-##            choices.append((choice.id, choice.__str__))
         w.choices = choices
 class RecipeAdmin(ImportExportModelAdmin):
     resource_class = RecipeResource
